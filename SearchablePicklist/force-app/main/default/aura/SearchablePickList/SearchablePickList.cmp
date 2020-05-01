@@ -1,0 +1,73 @@
+<aura:component>
+    <!-- contains combobox options -->
+    <aura:attribute name="options" type="List" required="true" access="public" />
+    <!-- contains label value for the combobox-input-->
+    <aura:attribute name="label" type="String" default="" access="public" />
+    <!-- contains value for the combobox-input-->
+    <aura:attribute name="value" type="String" default="" access="public" />
+    <!-- contains placeholder for the combobox-input-->
+    <aura:attribute name="placeholder" type="String" default="" access="public" />
+    <!-- contains placeholder for the combobox-input-->
+    <aura:attribute name="size" type="Integer" default="5" access="public" />
+    <!-- contains fieldLevelHelp for the combobox-input-->
+    <aura:attribute name="fieldLevelHelp" type="String" default="" access="public" />
+    <!-- set required of the combobox-input-->
+    <aura:attribute name="required" type="Boolean" default="false" access="public" />
+    
+    <!-- contains filtered options after providing text -->
+    <aura:attribute name="searchedOptions" type="List" access="private" />
+    <!-- handle dropdown visibility -->
+    <aura:attribute name="isShowDropDown" type="Boolean" default="false" access="private" />
+
+    <!-- aura method called from parent component to validate this component-->
+    <aura:method name="showHelpMessageIfInvalid" action="{!c.showHelpMessageIfInvalid}" />
+    <!--  calls the doInit method of controller-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <!-- layout of the pickList-->
+    <div class="slds-form-element" >
+        <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="true"
+                    aria-haspopup="listbox" role="combobox">
+                    <div class="slds-combobox__form-element" role="none">
+                        <div class="slds-form-element">
+                            <div class="dropdown-parent-div slds-form-element__control slds-is-relative slds-input-has-icon slds-input__icon">
+                                <div class="dropdown-button slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none"   onclick="{!c.onIconClick}">
+                                <lightning:Icon aura:id="click-dropdown" size="x-small"
+                                    class="dropdown-button slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                                    iconName="utility:down"/>
+                                    <lightning:input type="text" aura:id="input-search" label="{!v.label}"
+                                        fieldLevelHelp="{!v.fieldLevelHelp}" required="{!v.required}" role="textbox"
+                                        value="{!v.value}" class="combox-input" placeholder="{!v.placeholder}" onchange="{!c.onValueChange}">
+                                    </lightning:input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <aura:if isTrue="{!v.isShowDropDown}">
+                            <div id="listbox-id-1" aura:id="listbox-id-11" class="dropdown-custom slds-dropdown_fluid" role="listbox">
+                            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                                <aura:iteration items="{!v.searchedOptions}" var="item">
+                                    <li role="presentation" class="slds-listbox__item" data-value="{!item.value}"
+                                        onclick="{!c.onClickOption}">
+                                        <div aria-selected="false" id="option1"
+                                            class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                            role="option">
+                                            <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                            <span class="slds-media__body">
+                                                    <lightning:formattedText class="slds-listbox__item"
+                                                    value="{!item.value}" />
+                                            </span>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            </ul>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+</aura:component>

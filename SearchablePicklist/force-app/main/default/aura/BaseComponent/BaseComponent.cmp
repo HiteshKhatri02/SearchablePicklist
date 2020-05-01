@@ -1,0 +1,36 @@
+<aura:component>
+  <!-- attributes -->
+  <aura:attribute name="options" type="List" />
+  <aura:attribute name="value" type="String" default=""/>
+  <aura:attribute
+    name="isShowPickListComponent"
+    type="Boolean"
+    default="false"
+    access="private"
+  />
+
+  <!--handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <lightning:layout
+    horizontalAlign="center"
+    verticalAlign="center"
+    multipleRows="false"
+    pullToBoundary="small"
+  >
+    <aura:if isTrue="{!v.isShowPickListComponent}">
+      <lightning:layoutItem size="6">
+        <c:SearchablePickList
+          aura:id="fieldMappingComboBox"
+          label="Find value"
+          value="{!v.value}"
+          required="true"
+          size="6"
+          placeholder="Select Options"
+          options="{!v.options}"
+          fieldLevelHelp="Provide value for the pickList"
+        />
+      </lightning:layoutItem>
+    </aura:if>
+  </lightning:layout>
+</aura:component>
