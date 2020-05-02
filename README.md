@@ -2,7 +2,7 @@
 ##### @Author Hitesh Khatri
 [![N|Solid](https://avatars3.githubusercontent.com/u/15032823?s=100&amp;u=c450acb26ae6e416472b508fa33e888f7bec8818&amp;v=4)](https://avatars3.githubusercontent.com/u/15032823?s=100&amp;u=c450acb26ae6e416472b508fa33e888f7bec8818&amp;v=4)
 
-It is a reusable component which can be utilised search with the gien character on client side server.
+It is a reusable component which can be utilised search with the given character on client side server.
 
 ![](gif/serchablePicklist-plaback.gif)
 
